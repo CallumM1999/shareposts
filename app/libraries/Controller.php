@@ -6,14 +6,10 @@
 
     */
 
-
     class Controller {
         // Load model
-
         public function model($model) {
-            // echo APPROOT . '/models/' . $model .'.php';
-
-            // Reequire model file
+            // Require model file
             require_once APPROOT . '/models/' . $model .'.php';
 
             // Instantiate model
