@@ -19,9 +19,8 @@
         private $stmt;
         private $error;
 
-
         public function __construct() {
-            // Set DNS
+            // Set DSN
             $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
             $options = [
                 PDO::ATTR_PERSISTENT => true,
@@ -31,7 +30,6 @@
             // Create PDO instance
             try {
                 $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
-
             } catch(PDOException $e) {
                 $this->error = $e->getMessage();
                 echo $this->error;
@@ -82,9 +80,6 @@
 
         // Get row count
         public function rowCount() {
-            // echo 'statement: ' . $this->stmt;
-
             return $this->stmt->rowCount();
         }
-
     }

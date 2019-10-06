@@ -37,7 +37,6 @@
             return (password_verify($password, $hashed_password)) ? $row : false;
         }
 
-
         public function getUserById($id) {
             $this->db->query('select id, name, email from users where id = :id');
             $this->db->bind(':id', $id);

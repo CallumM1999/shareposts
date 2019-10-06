@@ -2,7 +2,7 @@
     class Posts extends Controller {
         public function __construct() {
             // Protected route
-            if(!isLoggedIn()) redirect('/users/login'); 
+            if(!Session::isLoggedIn()) redirect('/users/login'); 
 
             // Load model
             $this->postModel = $this->model('Post');
@@ -46,7 +46,7 @@
                 if (empty($data['title_err']) && empty($data['body_err'])) {
                     // Validated
                     if($this->postModel->addPost($data)) {
-                        flash('post_message', 'Post created');
+                        Session::flash('post_message', 'Post created');
                         redirect('/posts');
                     } else {
                         die('Something went wrong');
@@ -91,7 +91,7 @@
                 if (empty($data['title_err']) && empty($data['body_err'])) {
                     // Validated
                     if($this->postModel->updatePost($data)) {
-                        flash('post_message', 'Post updated');
+                        Session::flash('post_message', 'Post updated');
                         redirect('/posts');
                     } else {
                         die('Something went wrong');
@@ -139,7 +139,7 @@
             
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if($this->postModel->deletePost($id)) {
-                    flash('post_message', 'Post deleted');
+                    Session::flash('post_message', 'Post deleted');
                     redirect('/posts');
                 } else {
                     die('Something went wrong');

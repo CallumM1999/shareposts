@@ -30,14 +30,12 @@
                     'confirm_password_err' => '',
                 ];
 
-                // Validate Email
                 if (empty($data['email'])) {
+                    // Validate Email
                     $data['email_err'] = 'Please enter email';
-                } else {
+                } elseif ($this->userModel->findUserByEmail($data['email'])) {
                     // Check email
-                    if ($this->userModel->findUserByEmail($data['email'])) {
-                        $data['email_err'] = 'Email is already taken';
-                    }
+                    $data['email_err'] = 'Email is already taken';
                 }
 
                 // Validate Email
@@ -55,10 +53,8 @@
                 // Validate Confirm password
                 if (empty($data['confirm_password'])) {
                     $data['confirm_password_err'] = 'Please confirm password';
-                } else {
-                    if($data['password'] !== $data['confirm_password']) {
-                        $data['confirm_password_err'] = 'Passwords do not match';
-                    }
+                } elseif ($data['password'] !== $data['confirm_password']) {
+                    $data['confirm_password_err'] = 'Passwords do not match';
                 }
 
                 // Make sure errors are empty
@@ -70,7 +66,7 @@
 
                     // Register USer
                     if($this->userModel->register($data)) {
-                        flash('register_success', 'You are registered and can log in');
+                        Session::flash('register_success', 'You are registered and can log in');
                         redirect('/users/login');
                     } else {
                         die('something went wrong');
@@ -78,7 +74,6 @@
 
                 } else {
                     // Load view with errors
-
                     $this->view('users/register', $data);
                 }
 
@@ -96,7 +91,6 @@
                 ];
 
                 // Load view
-
                 $this->view('users/register', $data);
             }
         }
@@ -145,7 +139,6 @@
 
                     if($loggedInUser) {
                         // Create Session
-                        
                         $this->createUserSession($loggedInUser);
                         redirect('/posts');
                     } else {
@@ -154,13 +147,11 @@
                     }
                 } else {
                     // Load view with errors
-
                     $this->view('users/login', $data);
                 }
      
             } else {
                 // Init data
-
                 $data = [
                     'email' => '',
                     'password' => '',
@@ -177,7 +168,6 @@
             unset($_SESSION['user_id']);
             unset($_SESSION['user_email']);
             unset($_SESSION['user_name']);
-
             redirect('/users/login');
         }
     }
