@@ -11,8 +11,10 @@
         // Load model
 
         public function model($model) {
+            // echo APPROOT . '/models/' . $model .'.php';
+
             // Reequire model file
-            require_once '../app/models/' . $model .'.php';
+            require_once APPROOT . '/models/' . $model .'.php';
 
             // Instantiate model
             return new $model();

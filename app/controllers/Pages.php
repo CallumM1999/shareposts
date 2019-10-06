@@ -6,9 +6,11 @@ class Pages extends Controller {
     }
 
     public function index() {
-
+        if(isLoggedIn()) redirect('/posts');
+        
         $data = [
-            'title' => 'Travercy MVC'
+            'title' => 'SharePosts',
+            'description' => 'Simple social network build on the TraveryMVC PHP framework',
         ];
         
         $this->view('pages/index', $data);
@@ -16,7 +18,8 @@ class Pages extends Controller {
 
     public function about() {
         $data = [
-            'title' => 'About'
+            'title' => 'About',
+            'description' => 'App to share posts to other users',
         ];
 
         $this->view('pages/about', $data);
