@@ -1,8 +1,9 @@
 # SharePosts
+
 Sharepost is a simple app with authentication where a user can create and share posts.
 
 This was a project build during a php course ([Object Oriented PHP & MVC](https://www.udemy.com/course/object-oriented-php-mvc/)).
-This app was built with a [PHP MVC framework](https://github.com/CallumM1999/traversy-framework), also built during the course.
+This app was built with a [PHP MVC framework](https://github.com/thecallum/traversy-framework), also built during the course.
 
 [View Site](https://shareposts1234.epizy.com)
 
